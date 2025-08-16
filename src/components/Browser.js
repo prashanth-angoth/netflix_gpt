@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Header from './Header';
 
 const Browser = () => {
   return (
     <div>
-        <p>I am in Browser Component</p>
-      
+        <Header/>
     </div>
   )
 }
