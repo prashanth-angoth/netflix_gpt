@@ -1,16 +1,15 @@
 import React, { useRef, useState } from "react";
 import validation from "../utils/validation";
 import Header from "./Header";
-import { setSignedIn } from "../utils/userSlice";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "../utils/userSlice";
+import { BACKGROUND_IMAGE } from "../utils/Constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -25,15 +24,12 @@ const Login = () => {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email.current.value, password.current.value);
     const result = validation(email.current.value, password.current.value);
     setErrorMessage(result);
-    console.log(result);
     if (result !== "Valid") return;
     // Place further logic here for successful validation (e.g., API call)
     if (!userSignIn) {
       // Logic for Sign Up
-      console.log("User signed up");
 
       createUserWithEmailAndPassword(
         auth,
@@ -54,7 +50,6 @@ const Login = () => {
         });
     } else {
       // Logic for Sign In
-      console.log("User signed in");
       signInWithEmailAndPassword(
         auth,
         email.current.value,
@@ -63,7 +58,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log("User signed in successfully");
           dispatch(
             setUserDetails({
               
@@ -72,10 +66,8 @@ const Login = () => {
                 displayName: user.displayName,
             })
           );
-          console.log("User details set in Redux store");
-            console.log("before hitting browser");
-            dispatch(setSignedIn(true));
-          navigate("/browser");
+            // dispatch(setSignedIn(true));
+          // navigate("/browser");
           // ...
         })
         .catch((error) => {
@@ -89,7 +81,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/258d0f77-2241-4282-b613-8354a7675d1a/web/IN-en-20250721-TRIFECTA-perspective_cadc8408-df6e-4313-a05d-daa9dcac139f_large.jpg"
+          src={BACKGROUND_IMAGE}
           alt="background"
         />
       </div>

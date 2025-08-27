@@ -21,4 +21,12 @@ and once you give public directory as build and other select as no it'll complet
 12. implemented signin/signup on firebase
 13. now setup redux store to tore the user details 
 14. implemented signout 
+15. added the constant file to group all the constants at one place 
+16. I have registered to TMDB to access the movie lists API in our app. 
+17. we have cleaned the code by creating custom hooks for fetching the movies and trialers data.
+in our main container we have build the video playing in the background at the same time showing title and description over video
+18. we've integrated all the different cat movies 
+19. we have added the GPT Search page.
+20. added the language toggler on gpt search page
+
 
